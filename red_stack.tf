@@ -19,9 +19,11 @@ resource "aws_redshift_cluster" "chiz-red" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "chiz-redshift"
-  node_type          = "ra3.xlplus"
+  node_type          = "dc1.large"
   cluster_type       = "multi-node"
   number_of_nodes     = 3
   manage_master_password = true
+
+  iam_roles = [aws_iam_role.redshift_role.arn]
 }
 
